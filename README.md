@@ -17,13 +17,13 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Features
 
 - Responsive Calendar: Switch between month, week, and day views.
-- Create & View Events: Click any day or use the "+ Create" button to add events. Click on events to view details.
+- Create & View Events: Click any day or use the "+ Event" button to add events. Click on events to view details.
 - Dark/Light Mode: Easily toggle between light and dark theme from the top bar.
 
 ## Usage
 
 - Switch Views: Use the toggle in the top bar to change calendar views.
-- Add an Event: Click on a calendar cell or the "+ Create" button.
+- Add an Event: Click on a calendar cell or the "+ Event" button.
 - Toggle Theme: Click the sun/moon button in the top bar to switch between dark and light mode.
 
 ## Architecture & Design Decisions
@@ -35,7 +35,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Component Structure:
 
   - Calendar is the main container.
-  - TopBar (navigation, view toggles, Create button, dark/light switch).
+  - TopBar (navigation, view toggles, "+ Event" button, dark/light switch button).
   - MonthGrid, WeekGrid, DayGrid for different calendar views (each takes events, handlers, and current date state).
   - AddEventModal and EventDetailModal for event creation/viewing.
   - GridCell for a reusable, event-aware day cell with accessibility and keyboard navigation support.
@@ -53,11 +53,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - Toggle Theme:
 
-  - The dark/light mode toggle is currently not working. While the toggle button is present in the UI and theme logic is implemented, switching between themes does not update the app as intended.
+  - The dark/light mode toggle is currently not working. While the toggle button is present in the UI and theme logic implemented, switching between themes does not update the app as intended.
 
 - Event Features:
 
   - Basic validation (e.g start < time ) is not enforced.
 
 - Date/Time Handling:
-  - Simple string formate for date/time (no time zone logic).
+  - Simple string format for date/time (no time zone logic).
