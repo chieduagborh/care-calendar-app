@@ -88,7 +88,7 @@ const TopBar: React.FC<TopBarProps> = ({
           className="px-3 py-2 bg-[#e6b8a2] dark:bg-[#b7c9e2] text-white rounded font-semibold shadow hover:bg-[#b7c9e2] dark:hover:bg-[#e6b8a2] cursor-pointer text-sm sm:text-base"
           onClick={createEventClick}
         >
-          + Create
+          + Event
         </button>
         <button
           className="px-2 py-1 rounded bg-[#e9ece5] dark:bg-[#363a43] text-[#6c757d] dark:text-[#f7f6f3] hover:bg-[#dedbd2] dark:hover:bg-[#23272b] cursor-pointer text-sm sm:text-base"
