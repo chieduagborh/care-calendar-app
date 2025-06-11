@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Getting Started
 
-First, run the development server:
+First, install the packages:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Responsive Calendar: Switch between month, week, and day views.
+- Create & View Events: Click any day or use the "+ Create" button to add events. Click on events to view details.
+- Dark/Light Mode: Easily toggle between light and dark theme from the top bar.
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+- Switch Views: Use the toggle in the top bar to change calendar views.
+- Add an Event: Click on a calendar cell or the "+ Create" button.
+- Toggle Theme: Click the sun/moon button in the top bar to switch between dark and light mode.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Architecture & Design Decisions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- State Management:
 
-## Deploy on Vercel
+  - The app uses React context (EventProvider) for global event state (add/view events).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Component Structure:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  - Calendar is the main container.
+  - TopBar (navigation, view toggles, Create button, dark/light switch).
+  - MonthGrid, WeekGrid, DayGrid for different calendar views (each takes events, handlers, and current date state).
+  - AddEventModal and EventDetailModal for event creation/viewing.
+  - GridCell for a reusable, event-aware day cell with accessibility and keyboard navigation support.
+
+- Styling:
+
+  - Tailwind CSS.
+  - Dark mode using a ThemeProvider and dark class on <html>, with user preference saved in localStorage.
+
+- Accessibility:
+  - Modal dialogs have correct roles and aria-modal .
+  - Event grid cells support aria-selected.
+
+## Known Issues & Limitations
+
+- Toggle Theme:
+
+  - The dark/light mode toggle is currently not working. While the toggle button is present in the UI and theme logic is implemented, switching between themes does not update the app as intended.
+
+- Event Features:
+
+  - Basic validation (e.g start < time ) is not enforced.
+
+- Date/Time Handling:
+  - Simple string formate for date/time (no time zone logic).
