@@ -1,12 +1,7 @@
 "use client";
 import React from "react";
 import GridCell from "./GridCell";
-import {
-  buildMonthGrid,
-  formatDate,
-  monthNames,
-  dayNames,
-} from "@/utils/calendarHelpers";
+import { buildMonthGrid, formatDate, dayNames } from "@/utils/calendarHelpers";
 import { CalendarEvent } from "@/context/EventContext";
 
 type MonthGridProps = {
@@ -25,37 +20,13 @@ type MonthGridProps = {
 const MonthGrid: React.FC<MonthGridProps> = ({
   today,
   currentYear,
-  setCurrentYear,
   currentMonth,
-  setCurrentMonth,
   selectedDay,
   setSelectedDay,
   events = [],
   onCellClick,
   onEventClick,
 }) => {
-  const goToPrevMonth = () => {
-    if (currentMonth === 0) {
-      setCurrentYear(currentYear - 1);
-      setCurrentMonth(11);
-    } else {
-      setCurrentMonth(currentMonth - 1);
-    }
-  };
-  const goToNextMonth = () => {
-    if (currentMonth === 11) {
-      setCurrentYear(currentYear + 1);
-      setCurrentMonth(0);
-    } else {
-      setCurrentMonth(currentMonth + 1);
-    }
-  };
-  const goToToday = () => {
-    setCurrentYear(today.getFullYear());
-    setCurrentMonth(today.getMonth());
-    setSelectedDay(today.getDate());
-  };
-
   const monthCells = buildMonthGrid(currentYear, currentMonth);
 
   return (
@@ -103,7 +74,7 @@ const MonthGrid: React.FC<MonthGridProps> = ({
                 date
                   ? () => {
                       setSelectedDay(date.getDate());
-                      onCellClick && onCellClick(date);
+                      if (onCellClick) onCellClick(date);
                     }
                   : undefined
               }
@@ -121,7 +92,7 @@ const MonthGrid: React.FC<MonthGridProps> = ({
                       aria-label={`Event: ${event.title}, ${event.startTime}–${event.endTime}`}
                       onClick={(e) => {
                         e.stopPropagation();
-                        onEventClick && onEventClick(event);
+                        if (onEventClick) onEventClick(event);
                       }}
                     >
                       <span className="font-bold">

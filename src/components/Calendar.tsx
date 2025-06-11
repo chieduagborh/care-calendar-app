@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { formatDate } from "@/utils/calendarHelpers";
 import { useEventContext, CalendarEvent } from "@/context/EventContext";
 import TopBar from "./TopBar";
@@ -11,7 +11,7 @@ import EventDetailModal from "./EventDetailModal";
 type ViewMode = "month" | "week" | "day";
 
 const Calendar: React.FC = () => {
-  const today = new Date();
+  const today = useMemo(() => new Date(), []);
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [selectedDay, setSelectedDay] = useState(today.getDate());
@@ -39,7 +39,7 @@ const Calendar: React.FC = () => {
       sunday.setDate(current.getDate() - current.getDay());
       setSelectedDay(sunday.getDate());
     }
-  }, [currentYear, currentMonth, today]);
+  }, [currentYear, currentMonth, today, viewMode, selectedDay]);
 
   const openEventModal = (date?: Date) => {
     setModalOpen(true);

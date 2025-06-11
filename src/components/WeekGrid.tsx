@@ -96,7 +96,7 @@ const WeekGrid: React.FC<WeekGridProps> = ({
               isSelected={isSelected}
               onClick={() => {
                 setSelectedDay(date.getDate());
-                onCellClick && onCellClick(date);
+                if (onCellClick) onCellClick(date);
               }}
             >
               {cellEvents.length > 0 && (
@@ -109,7 +109,7 @@ const WeekGrid: React.FC<WeekGridProps> = ({
                       title={`${event.title} (${event.startTime}-${event.endTime})`}
                       onClick={(e) => {
                         e.stopPropagation();
-                        onEventClick && onEventClick(event);
+                        if (onEventClick) onEventClick(event);
                       }}
                       tabIndex={0}
                       role="button"
@@ -117,7 +117,7 @@ const WeekGrid: React.FC<WeekGridProps> = ({
                       onKeyDown={(e) => {
                         if (e.key === "Enter" || e.key === " ") {
                           e.preventDefault();
-                          onEventClick && onEventClick(event);
+                          if (onEventClick) onEventClick(event);
                         }
                       }}
                     >

@@ -47,7 +47,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({
       <div
         className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md text-[#1f1f1f]"
         role="dialog"
-        aria-model="true"
+        aria-modal="true"
       >
         <h2 className="font-bold text-lg mb-4 ">Create Event</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-3">

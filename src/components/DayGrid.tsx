@@ -51,7 +51,7 @@ const DayGrid: React.FC<DayGridProps> = ({
               className="bg-[#b7c9e2] text-white rounded px-4 py-2 flex flex-col cursor-pointer hover:bg-[#e6b8a2]"
               title={event.title}
               onClick={() => {
-                onEventClick && onEventClick(event);
+                if (onEventClick) onEventClick(event);
               }}
             >
               <div className="font-bold">
